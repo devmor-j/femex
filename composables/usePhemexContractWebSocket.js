@@ -3,14 +3,14 @@ export default function ({ symbol = "BTCUSD" } = {}) {
   const tradeRef = ref([[]]);
 
   const onMessage = {
-    1: (msg) => {
+    orderbook: (msg) => {
       if (msg.type === "snapshot") {
         orderbookRef.value = msg.book;
       } else if (msg.type === "incremental") {
         // TODO: update orderbookRef
       }
     },
-    2: (msg) => {
+    trade: (msg) => {
       if (msg.type === "snapshot") {
         tradeRef.value = msg.trades;
       } else if (msg.type === "incremental") {
@@ -24,7 +24,13 @@ export default function ({ symbol = "BTCUSD" } = {}) {
 
     ws.addEventListener("message", (event) => {
       const msg = JSON.parse(event.data);
-      if (!("error" in msg)) onMessage[msg.id]?.(msg);
+
+      if (!("error" in msg)) {
+        if ("book" in msg) onMessage.orderbook(msg);
+        else if ("trades" in msg) onMessage.trade(msg);
+      } else {
+        // TODO: handle error (maybe toast bad network or reconnect)
+      }
     });
 
     ws.addEventListener("open", () => {
