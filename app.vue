@@ -12,7 +12,7 @@ onMounted(() => {
     <div class="w-fit mx-auto">
       <div class="text-red-500">
         <div
-          v-for="ask in orderbookComputed.asks.slice(20)"
+          v-for="ask in orderbookComputed.asks"
           class="flex gap-4 justify-center"
         >
           <span class="min-w-[6ch]">{{ ask[0] }}</span>
@@ -25,7 +25,7 @@ onMounted(() => {
 
       <div class="text-green-500">
         <div
-          v-for="bid in orderbookComputed.bids.slice(0, 10)"
+          v-for="bid in orderbookComputed.bids"
           class="flex gap-4 justify-center"
         >
           <span class="min-w-[6ch]">{{ bid[0] }}</span>
