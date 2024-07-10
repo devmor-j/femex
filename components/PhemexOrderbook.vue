@@ -5,8 +5,8 @@ defineProps({
     type: { asks: [], bids: [] },
     validator: (prop) => {
       if (
-        prop.asks.some((a) => a.length !== 2 || (a[0] <= 0 && a[1] < 0)) ||
-        prop.bids.some((b) => b.length !== 2 || (b[0] <= 0 && b[1] < 0))
+        prop.asks.some((a) => a.length !== 2) ||
+        prop.bids.some((b) => b.length !== 2)
       ) {
         return false;
       }

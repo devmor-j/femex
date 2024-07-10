@@ -4,7 +4,7 @@ defineProps({
   trades: {
     type: Array,
     validator: (prop) => {
-      if (prop.some((t) => t.length !== 4 || t[2] <= 0 || t[3] <= 0)) {
+      if (prop.some((t) => t.length !== 4)) {
         return false;
       }
 
