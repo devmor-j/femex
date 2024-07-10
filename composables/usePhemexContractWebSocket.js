@@ -7,17 +7,27 @@ const toFormattedOrderbook = (arr) => {
   return [price, qty];
 };
 
+/** @param {[number, 'Buy' | 'Sell', number, number]} arr */
+const toFormattedTrades = (arr) => {
+  const time = new Date(arr[0] / 1e6).toLocaleTimeString().slice(0, -3);
+  const isBuy = arr[1] === "Buy";
+  const price = arr[2] / 1e4;
+  const qty = Math.floor(1e4 * (arr[3] / price)) / 1e4;
+
+  return [time, isBuy, price, qty];
 };
 
 export default function ({ symbol = "BTCUSD" } = {}) {
   const orderbookRef = ref({ asks: [], bids: [] });
-  const tradesRef = ref([[]]);
+  const tradesRef = ref([]);
 
   const orderbookComputed = computed(() => ({
     asks: orderbookRef.value.asks.map(toFormattedOrderbook).reverse().slice(20),
-    bids: orderbookRef.value.bids.map(toUnScaledNumbers).slice(0, 10),
+    bids: orderbookRef.value.bids.map(toFormattedOrderbook).slice(0, 10),
   }));
-  const tradesComputed = computed(() => tradesRef.value);
+  const tradesComputed = computed(() =>
+    tradesRef.value.map(toFormattedTrades).slice(0, 20)
+  );
 
   const onMessage = {
     orderbook: (msg) => {
@@ -79,7 +89,8 @@ export default function ({ symbol = "BTCUSD" } = {}) {
       if (msg.type === "snapshot") {
         tradesRef.value = msg.trades;
       } else if (msg.type === "incremental") {
-        // TODO: update tradeRef
+        tradesRef.value.splice(-msg.trades.length, msg.trades.length);
+        tradesRef.value.unshift(...msg.trades);
       }
     },
   };
