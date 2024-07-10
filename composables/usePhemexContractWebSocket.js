@@ -79,15 +79,37 @@ export default function ({ symbol = "BTCUSD" } = {}) {
     },
   };
 
+  const onError = {
+    6001: (msg) => {
+      // "invalid argument"
+      disconnect();
+      symbol = "BTCUSD";
+      connect();
+    },
+  };
+
+  /** @type {WebSocket} */
+  let ws;
+
+  const disconnect = () => {
+    if (ws) ws.close();
+  };
+
   const connect = () => {
-    const ws = new WebSocket("wss://ws.phemex.com");
+    ws = new WebSocket("wss://ws.phemex.com");
 
     ws.addEventListener("message", (event) => {
       const msg = JSON.parse(event.data);
 
       if (!("error" in msg)) {
+        // socket data messages
         if ("book" in msg) onMessage.orderbook(msg);
         else if ("trades" in msg) onMessage.trades(msg);
+      } else if (msg.error !== null) {
+        // socket error messages with code
+        onError[msg.error.code]?.(msg);
+      } else {
+        // socket non-error messages like PONG and INFO
       }
     });
 
@@ -122,5 +144,5 @@ export default function ({ symbol = "BTCUSD" } = {}) {
     });
   };
 
-  return { orderbookComputed, tradesComputed, connect };
+  return { orderbookComputed, tradesComputed, disconnect, connect };
 }
