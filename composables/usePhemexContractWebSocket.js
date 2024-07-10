@@ -1,7 +1,12 @@
 // TODO: extract to utility
-const toUnScaledNumbers = (n) => {
-  const price = n[0] / 1e4;
-  return [price, Math.floor(1e4 * (n[1] / price)) / 1e4];
+/** @param {[number, number]} arr */
+const toFormattedOrderbook = (arr) => {
+  const price = (arr[0] / 1e4).toFixed(1);
+  const qty = (Math.floor(1e4 * (arr[1] / price)) / 1e4).toFixed(4);
+
+  return [price, qty];
+};
+
 };
 
 export default function ({ symbol = "BTCUSD" } = {}) {
@@ -9,7 +14,7 @@ export default function ({ symbol = "BTCUSD" } = {}) {
   const tradesRef = ref([[]]);
 
   const orderbookComputed = computed(() => ({
-    asks: orderbookRef.value.asks.map(toUnScaledNumbers).reverse().slice(20),
+    asks: orderbookRef.value.asks.map(toFormattedOrderbook).reverse().slice(20),
     bids: orderbookRef.value.bids.map(toUnScaledNumbers).slice(0, 10),
   }));
   const tradesComputed = computed(() => tradesRef.value);
