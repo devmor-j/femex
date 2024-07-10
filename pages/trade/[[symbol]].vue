@@ -14,6 +14,7 @@ onUnmounted(disconnect);
 
 <template>
   <PhemexOrderbook :book="orderbookComputed" />
+  <PhemexRecentTrades :trades="tradesComputed" />
 </template>
 
 <style></style>
