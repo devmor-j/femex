@@ -35,7 +35,7 @@ defineProps({
     <hr class="my-2" />
 
     <div class="font-mono">
-      <div v-for="bid in book.bids" class="flex gap-4 justify-center">
+      <div v-for="bid in book.bids" class="flex">
         <span class="grow text-green-500">{{ bid[0] }}</span>
         <span>{{ bid[1] }}</span>
       </div>
