@@ -19,6 +19,8 @@ defineProps({
 
 <template>
   <div>
+    <h2 class="text-sm">Phemex Orderbook</h2>
+
     <div class="flex gap-32 text-gray-500 py-2">
       <span class="grow">Price</span>
       <span>Size</span>
@@ -32,7 +34,7 @@ defineProps({
     </div>
 
     <!-- TODO: add last trade price -->
-    <hr class="my-2" />
+    <hr class="my-4" />
 
     <div class="font-mono">
       <div v-for="bid in book.bids" class="flex">
