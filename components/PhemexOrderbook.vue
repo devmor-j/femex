@@ -19,21 +19,25 @@ defineProps({
 
 <template>
   <div class="w-fit mx-auto">
-    <div class="text-red-500">
-      <div v-for="ask in book.asks" class="flex gap-4 justify-center">
-        <span class="min-w-[6ch]">{{ ask[0] }}</span>
-        <span>|</span>
-        <span class="min-w-[6ch]">{{ ask[1] }}</span>
+    <div class="flex gap-32 text-gray-500 py-2">
+      <span class="grow">Price</span>
+      <span>Size</span>
+    </div>
+
+    <div class="font-mono">
+      <div v-for="ask in book.asks" class="flex">
+        <span class="grow text-red-500">{{ ask[0] }}</span>
+        <span>{{ ask[1] }}</span>
       </div>
     </div>
 
+    <!-- TODO: add last trade price -->
     <hr class="my-2" />
 
-    <div class="text-green-500">
+    <div class="font-mono">
       <div v-for="bid in book.bids" class="flex gap-4 justify-center">
-        <span class="min-w-[6ch]">{{ bid[0] }}</span>
-        <span>|</span>
-        <span class="min-w-[6ch]">{{ bid[1] }}</span>
+        <span class="grow text-green-500">{{ bid[0] }}</span>
+        <span>{{ bid[1] }}</span>
       </div>
     </div>
   </div>
