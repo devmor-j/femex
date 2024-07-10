@@ -14,7 +14,9 @@ onUnmounted(disconnect);
 
 <template>
   <div class="container mx-auto">
-    <div class="flex items-start justify-center flex-wrap gap-16 max-h-96">
+    <div
+      class="flex items-start justify-center flex-wrap gap-16 max-h-96 my-16"
+    >
       <PhemexOrderbook :book="orderbookComputed" />
       <PhemexRecentTrades :trades="tradesComputed" />
     </div>

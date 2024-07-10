@@ -26,7 +26,7 @@ defineProps({
       <span>Size</span>
     </div>
 
-    <div class="font-mono">
+    <div class="tracking-wide tabular-nums lining-nums">
       <div v-for="ask in book.asks" class="flex">
         <span class="grow text-sell">{{ ask[0] }}</span>
         <span>{{ ask[1] }}</span>
@@ -36,7 +36,7 @@ defineProps({
     <!-- TODO: add last trade price -->
     <hr class="my-4" />
 
-    <div class="font-mono">
+    <div class="tracking-wide tabular-nums lining-nums">
       <div v-for="bid in book.bids" class="flex">
         <span class="grow text-buy">{{ bid[0] }}</span>
         <span>{{ bid[1] }}</span>

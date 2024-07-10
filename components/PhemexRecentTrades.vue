@@ -24,12 +24,14 @@ defineProps({
       <span class="pe-6">Time</span>
     </div>
 
-    <div class="font-mono overflow-y-auto h-[32rem]">
+    <div
+      class="tracking-wide tabular-nums lining-nums overflow-y-auto h-[32rem]"
+    >
       <div v-for="(trade, index) in trades" class="flex pe-2 items-center">
         <span class="grow" :class="trade[1] ? 'text-buy' : 'text-sell'">
           {{ trade[2] }}
 
-          <i class="text-xl leading-6">{{
+          <i class="not-italic inline-block min-w-[2ch]">{{
             +trade[2] > +trades[index + 1]?.[2]
               ? "&uarr;"
               : +trade[2] < +trades[index + 1]?.[2]
