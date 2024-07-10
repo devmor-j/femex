@@ -28,7 +28,7 @@ defineProps({
 
     <div class="font-mono">
       <div v-for="ask in book.asks" class="flex">
-        <span class="grow text-red-500">{{ ask[0] }}</span>
+        <span class="grow text-sell">{{ ask[0] }}</span>
         <span>{{ ask[1] }}</span>
       </div>
     </div>
@@ -38,7 +38,7 @@ defineProps({
 
     <div class="font-mono">
       <div v-for="bid in book.bids" class="flex">
-        <span class="grow text-green-500">{{ bid[0] }}</span>
+        <span class="grow text-buy">{{ bid[0] }}</span>
         <span>{{ bid[1] }}</span>
       </div>
     </div>

@@ -26,11 +26,9 @@ defineProps({
 
     <div class="font-mono overflow-y-auto h-[32rem]">
       <div v-for="trade in trades" class="flex pe-2">
-        <span
-          class="grow"
-          :class="trade[1] ? 'text-green-500' : 'text-red-500'"
-          >{{ trade[2] }}</span
-        >
+        <span class="grow" :class="trade[1] ? 'text-buy' : 'text-sell'">{{
+          trade[2]
+        }}</span>
         <span class="grow">{{ trade[3] }}</span>
         <span>{{ trade[0] }}</span>
       </div>
