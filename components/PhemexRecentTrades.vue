@@ -27,7 +27,10 @@ defineProps({
     <div
       class="tracking-wide tabular-nums lining-nums overflow-y-auto h-[32rem]"
     >
-      <div v-for="(trade, index) in trades" class="flex pe-2 items-center">
+      <div
+        v-for="(trade, index) in trades"
+        class="flex pe-2 items-center cursor-pointer hover:bg-neutral-800"
+      >
         <span class="grow" :class="trade[1] ? 'text-buy' : 'text-sell'">
           {{ trade[2] }}
 

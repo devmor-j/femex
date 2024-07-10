@@ -27,7 +27,10 @@ defineProps({
     </div>
 
     <div class="tracking-wide tabular-nums lining-nums">
-      <div v-for="ask in book.asks" class="flex">
+      <div
+        v-for="ask in book.asks"
+        class="flex cursor-pointer hover:bg-neutral-800"
+      >
         <span class="grow text-sell">{{ ask[0] }}</span>
         <span>{{ ask[1] }}</span>
       </div>
@@ -37,7 +40,10 @@ defineProps({
     <hr class="my-4" />
 
     <div class="tracking-wide tabular-nums lining-nums">
-      <div v-for="bid in book.bids" class="flex">
+      <div
+        v-for="bid in book.bids"
+        class="flex cursor-pointer hover:bg-neutral-800"
+      >
         <span class="grow text-buy">{{ bid[0] }}</span>
         <span>{{ bid[1] }}</span>
       </div>
