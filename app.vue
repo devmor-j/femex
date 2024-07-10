@@ -1,7 +1,11 @@
 <script setup></script>
 
 <template>
-  <div class="m-8">
+  <div class="font-HarmonyOS_Sans">
     <NuxtPage></NuxtPage>
   </div>
 </template>
+
+<style lang="scss">
+@import "/assets/main.scss";
+</style>
