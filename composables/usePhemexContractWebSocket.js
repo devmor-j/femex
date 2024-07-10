@@ -17,6 +17,14 @@ const toFormattedTrades = (arr) => {
   return [time, isBuy, price, qty];
 };
 
+/**
+ *
+ * @description
+ * Phemex COIN-M BTCUSD Market
+ * https://phemex.com/trade/inverse/BTCUSD
+ * https://phemex-docs.github.io/#contract-websocket-api
+ */
+
 export default function ({ symbol = "BTCUSD" } = {}) {
   const orderbookRef = ref({ asks: [], bids: [] });
   const tradesRef = ref([]);
