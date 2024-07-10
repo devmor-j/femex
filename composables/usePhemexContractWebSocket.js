@@ -9,10 +9,10 @@ const toFormattedOrderbook = (arr) => {
 
 /** @param {[number, 'Buy' | 'Sell', number, number]} arr */
 const toFormattedTrades = (arr) => {
-  const time = new Date(arr[0] / 1e6).toLocaleTimeString().slice(0, -3);
+  const time = new Date(arr[0] / 1e6).toISOString().slice(-13, -5);
   const isBuy = arr[1] === "Buy";
-  const price = arr[2] / 1e4;
-  const qty = Math.floor(1e4 * (arr[3] / price)) / 1e4;
+  const price = (arr[2] / 1e4).toFixed(1);
+  const qty = (Math.floor(1e4 * (arr[3] / price)) / 1e4).toFixed(4);
 
   return [time, isBuy, price, qty];
 };
@@ -26,7 +26,7 @@ export default function ({ symbol = "BTCUSD" } = {}) {
     bids: orderbookRef.value.bids.map(toFormattedOrderbook).slice(0, 10),
   }));
   const tradesComputed = computed(() =>
-    tradesRef.value.map(toFormattedTrades).slice(0, 20)
+    tradesRef.value.map(toFormattedTrades).slice(0, 50)
   );
 
   const onMessage = {

@@ -18,7 +18,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-fit mx-auto">
+  <div>
     <div class="flex gap-32 text-gray-500 py-2">
       <span class="grow">Price</span>
       <span>Size</span>

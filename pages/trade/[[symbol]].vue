@@ -13,8 +13,10 @@ onUnmounted(disconnect);
 </script>
 
 <template>
-  <PhemexOrderbook :book="orderbookComputed" />
-  <PhemexRecentTrades :trades="tradesComputed" />
+  <div class="container">
+    <PhemexOrderbook :book="orderbookComputed" />
+    <PhemexRecentTrades :trades="tradesComputed" />
+  </div>
 </template>
 
 <style></style>
