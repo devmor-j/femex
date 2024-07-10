@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   compatibilityDate: "2024-07-03",
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/fontaine"],
   app: {
     head: {
       meta: [{ name: "color-scheme", content: "dark light" }],
