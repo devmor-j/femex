@@ -1,14 +1,7 @@
-<script setup>
-const { orderbookComputed, tradesComputed, connect } =
-  usePhemexContractWebSocket();
-
-onMounted(() => {
-  connect();
-});
-</script>
+<script setup></script>
 
 <template>
   <div class="m-8">
-    <PhemexOrderbook :book="orderbookComputed" />
+    <NuxtPage></NuxtPage>
   </div>
 </template>
