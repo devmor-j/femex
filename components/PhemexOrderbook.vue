@@ -14,6 +14,10 @@ defineProps({
       return true;
     },
   },
+  lastTrade: {
+    type: { price: Number, isBuy: Boolean },
+    default: {},
+  },
 });
 </script>
 
@@ -24,7 +28,7 @@ defineProps({
       <span>Size</span>
     </div>
 
-    <div class="tracking-wide tabular-nums lining-nums">
+    <div class="tabular-nums lining-nums">
       <div
         v-for="ask in book.asks"
         class="flex cursor-pointer hover:bg-neutral-800"
@@ -34,10 +38,19 @@ defineProps({
       </div>
     </div>
 
-    <!-- TODO: add last trade price -->
-    <hr class="my-4" />
+    <div class="py-2">
+      <span
+        class="font-black text-2xl min-h-8 flex items-center gap-x-1 cursor-pointer"
+        :class="lastTrade.isBuy ? 'text-buy' : 'text-sell'"
+      >
+        {{ lastTrade.price }}
+        <i class="text-base" v-if="typeof lastTrade.isBuy === 'boolean'">{{
+          lastTrade.isBuy ? "&#9650;" : "&#9660;"
+        }}</i>
+      </span>
+    </div>
 
-    <div class="tracking-wide tabular-nums lining-nums">
+    <div class="tabular-nums lining-nums">
       <div
         v-for="bid in book.bids"
         class="flex cursor-pointer hover:bg-neutral-800"

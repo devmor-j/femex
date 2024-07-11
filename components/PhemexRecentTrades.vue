@@ -22,9 +22,7 @@ defineProps({
       <span class="pe-6">Time</span>
     </div>
 
-    <div
-      class="tracking-wide tabular-nums lining-nums overflow-y-auto h-[32rem]"
-    >
+    <div class="tabular-nums lining-nums overflow-y-auto h-[32rem]">
       <div
         v-for="(trade, index) in trades"
         class="flex pe-2 items-center cursor-pointer hover:bg-neutral-800"

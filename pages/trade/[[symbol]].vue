@@ -8,6 +8,11 @@ const symbolComputed = computed(() => route.params.symbol?.toUpperCase());
 const { orderbookComputed, tradesComputed, connect, disconnect } =
   usePhemexContractWebSocket({ symbol: symbolComputed.value });
 
+const lastTradeComputed = computed(() => ({
+  price: tradesComputed.value[0]?.[2],
+  isBuy: tradesComputed.value[0]?.[1],
+}));
+
 onMounted(connect);
 onUnmounted(disconnect);
 </script>
@@ -19,6 +24,7 @@ onUnmounted(disconnect);
         <PhemexOrderbook
           base-tabs-title="Order Book"
           :book="orderbookComputed"
+          :last-trade="lastTradeComputed"
         />
         <PhemexRecentTrades
           base-tabs-title="Recent Trades"
