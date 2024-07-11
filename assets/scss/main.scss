@@ -8,6 +8,10 @@
   html {
     @apply font-HarmonyOS_Sans;
   }
+
+  * {
+    @apply scrollbar-thin  scrollbar-thumb-stone-800 scrollbar-track-stone-900 hover:scrollbar-thumb-stone-700 active:scrollbar-thumb-stone-500 active:scrollbar-track-stone-800 scrollbar-thumb-rounded-sm scrollbar-track-rounded-sm;
+  }
 }
 
 @layer components {

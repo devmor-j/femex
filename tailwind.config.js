@@ -1,3 +1,4 @@
+import tailwindScrollbar from "tailwind-scrollbar";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -18,5 +19,10 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    tailwindScrollbar({
+      nocompatible: true,
+      preferredStrategy: "pseudoelements",
+    }),
+  ],
 };
