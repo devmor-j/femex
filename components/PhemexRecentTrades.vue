@@ -1,6 +1,6 @@
 <script setup>
 // TODO: convert to BaseRecentTrades
-defineProps({
+const props = defineProps({
   trades: {
     type: Array,
     validator: (prop) => {
@@ -12,6 +12,25 @@ defineProps({
     },
   },
 });
+
+const isLoading = ref(true);
+
+const unwatchLoading = watch(
+  () => props.trades[0]?.[2],
+  (lastTradedPrice) => {
+    if (lastTradedPrice > 0) {
+      isLoading.value = false;
+      unwatchLoading();
+    }
+  }
+);
+
+onMounted(() => {
+  if (props.trades.length > 0) {
+    isLoading.value = false;
+    unwatchLoading();
+  }
+});
 </script>
 
 <template>
@@ -22,7 +41,10 @@ defineProps({
       <span class="pe-5">Time</span>
     </div>
 
-    <div class="tabular-nums lining-nums overflow-y-auto h-[32rem]">
+    <div v-if="isLoading" class="w-8 h-8 block mx-auto">
+      <SvgSpinner class="stroke-gray-300" />
+    </div>
+    <div v-else class="tabular-nums lining-nums overflow-y-auto h-[32rem]">
       <div
         v-for="(trade, index) in trades"
         :key="index"
