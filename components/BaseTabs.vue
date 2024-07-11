@@ -20,7 +20,7 @@ const activateTab = (tabTitle) => {
 
 <template>
   <div>
-    <div class="flex gap-4 w-fit p-2 space-x-2">
+    <div class="flex gap-4 w-fit space-x-2">
       <span
         v-for="tabTitle in tabTitles"
         class="p-1 cursor-pointer text-gray-400"
