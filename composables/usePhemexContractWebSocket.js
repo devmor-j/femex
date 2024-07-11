@@ -147,7 +147,9 @@ export default function ({ symbol = "BTCUSD" } = {}) {
       });
 
       setInterval(() => {
-        ws.send(pingMsg);
+        if (ws.readyState === ws.OPEN) {
+          ws.send(pingMsg);
+        }
       }, 5_000);
 
       ws.send(
