@@ -13,6 +13,7 @@
     "@nuxtjs/fontaine": "^0.4.3",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "nuxt": "^3.12.3",
+    "nuxt-svgo": "^4.0.2",
     "vue": "latest"
   },
   "engines": {

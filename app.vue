@@ -7,7 +7,7 @@
 </template>
 
 <style lang="scss">
-@use "assets/style/main.scss";
+@use "assets/scss/main.scss";
 
 .page-enter-active,
 .page-leave-active {
