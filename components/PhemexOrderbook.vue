@@ -19,8 +19,6 @@ defineProps({
 
 <template>
   <div>
-    <h2 class="text-sm">Phemex Orderbook</h2>
-
     <div class="flex gap-32 text-gray-500 py-2">
       <span class="grow">Price</span>
       <span>Size</span>

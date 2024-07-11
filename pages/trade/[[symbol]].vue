@@ -14,13 +14,17 @@ onUnmounted(disconnect);
 
 <template>
   <div class="container mx-auto">
-    <div
-      class="flex items-start justify-center flex-wrap gap-16 max-h-96 my-16"
-    >
-      <PhemexOrderbook :book="orderbookComputed" />
-      <PhemexRecentTrades :trades="tradesComputed" />
+    <div class="flex items-start flex-wrap gap-16 max-h-96 my-16">
+      <BaseTabs>
+        <PhemexOrderbook
+          base-tabs-title="Order Book"
+          :book="orderbookComputed"
+        />
+        <PhemexRecentTrades
+          base-tabs-title="Recent Trades"
+          :trades="tradesComputed"
+        />
+      </BaseTabs>
     </div>
   </div>
 </template>
-
-<style></style>
