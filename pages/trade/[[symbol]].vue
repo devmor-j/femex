@@ -1,7 +1,11 @@
 <script setup>
 const route = useRoute();
 
-if (!route.params.symbol) navigateTo(route.path + "BTCUSD");
+if (!route.params.symbol) {
+  if (route.path.at(-1) === "/") {
+    navigateTo(route.path + "BTCUSD");
+  } else navigateTo(route.path + "/BTCUSD");
+}
 
 const symbolComputed = computed(() => route.params.symbol?.toUpperCase());
 
@@ -18,8 +22,15 @@ onUnmounted(disconnect);
 </script>
 
 <template>
-  <div class="container mx-auto">
-    <div class="flex items-start flex-wrap gap-16 max-h-96 m-16">
+  <div class="container mx-auto px-8">
+    <main class="flex flex-col items-start gap-16 max-h-96 my-16">
+      <button class="btn group">
+        <NuxtLink to="/">
+          <small class="arrow reverse">&#129144;</small>
+          Homepage
+        </NuxtLink>
+      </button>
+
       <BaseTabs>
         <PhemexOrderbook
           base-tabs-title="Order Book"
@@ -31,6 +42,6 @@ onUnmounted(disconnect);
           :trades="tradesComputed"
         />
       </BaseTabs>
-    </div>
+    </main>
   </div>
 </template>

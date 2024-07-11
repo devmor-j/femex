@@ -1,1 +1,27 @@
 @use "font";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  a.link {
+    @apply text-blue-500 visited:text-purple-500 active:text-blue-600 hover:border-b border-dashed;
+  }
+
+  em.emphasis {
+    @apply bg-slate-800 px-1.5 py-0.5 border border-slate-700 border-dashed rounded;
+  }
+
+  button.btn {
+    @apply border rounded px-3 py-1 hover:bg-stone-800 bg-stone-900 text-orange-500;
+  }
+
+  small.arrow {
+    @apply transition-[padding] duration-100 pe-2 group-hover:ps-2 group-hover:pe-0;
+
+    &.reverse {
+      @apply pe-0 ps-2 group-hover:pe-2 group-hover:ps-0;
+    }
+  }
+}
