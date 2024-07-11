@@ -6,7 +6,16 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
-      meta: [{ name: "color-scheme", content: "dark light" }],
+      meta: [
+        { name: "color-scheme", content: "dark light" },
+        {
+          name: "description",
+          content:
+            "Hobby website to showcase one of my latest works with Nuxt and TailwindCSS",
+        },
+      ],
+      title: "Femex",
+      htmlAttrs: { lang: "en" },
     },
   },
   svgo: {
