@@ -24,7 +24,7 @@ const activateTab = (tabTitle) => {
       <span
         v-for="tabTitle in tabTitles"
         :key="tabTitle"
-        class="p-1 cursor-pointer text-gray-400"
+        class="p-1 cursor-pointer text-gray-400 select-none"
         :class="{ 'border-b-2 text-white': activeTabTitle === tabTitle }"
         @click="activateTab(tabTitle)"
       >

@@ -70,11 +70,12 @@ onMounted(() => {
 
 <template>
   <div class="relative">
-    <div class="flex gap-x-1 items-center my-3 w-fit">
+    <div class="flex gap-x-1 items-center my-3 w-fit select-none">
       <img
         @click="updateBookView('default')"
         src="~/assets/img/default.png"
         alt="orderbook default view"
+        draggable="false"
         class="max-w-4 cursor-pointer"
         :class="{ 'opacity-50': bookViewSetting !== 'default' }"
       />
@@ -82,6 +83,7 @@ onMounted(() => {
         @click="updateBookView('sell')"
         src="~/assets/img/sell.png"
         alt="orderbook sell view"
+        draggable="false"
         class="max-w-4 cursor-pointer"
         :class="{ 'opacity-50': bookViewSetting !== 'sell' }"
       />
@@ -89,6 +91,7 @@ onMounted(() => {
         @click="updateBookView('buy')"
         src="~/assets/img/buy.png"
         alt="orderbook buy view"
+        draggable="false"
         class="max-w-4 cursor-pointer"
         :class="{ 'opacity-50': bookViewSetting !== 'buy' }"
       />
