@@ -94,6 +94,7 @@ const updateBookView = (view) => {
       >
         <div
           v-for="ask in asksComputed"
+          :key="ask[0]"
           class="flex cursor-pointer hover:bg-neutral-800"
         >
           <span class="grow text-sell">{{ ask[0] }}</span>
@@ -120,6 +121,7 @@ const updateBookView = (view) => {
       >
         <div
           v-for="bid in bidsComputed"
+          :key="bid[0]"
           class="flex cursor-pointer hover:bg-neutral-800"
         >
           <span class="grow text-buy">{{ bid[0] }}</span>
