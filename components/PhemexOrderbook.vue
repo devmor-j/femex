@@ -45,18 +45,21 @@ const updateBookView = (view) => {
         src="/assets/images/default.png"
         alt="orderbook default view"
         class="max-w-4 cursor-pointer"
+        :class="{ 'opacity-50': bookViewSetting !== 'default' }"
       />
       <img
         @click="updateBookView('sell')"
         src="/assets/images/sell.png"
         alt="orderbook sell view"
         class="max-w-4 cursor-pointer"
+        :class="{ 'opacity-50': bookViewSetting !== 'sell' }"
       />
       <img
         @click="updateBookView('buy')"
         src="/assets/images/buy.png"
         alt="orderbook buy view"
         class="max-w-4 cursor-pointer"
+        :class="{ 'opacity-50': bookViewSetting !== 'buy' }"
       />
     </div>
 
