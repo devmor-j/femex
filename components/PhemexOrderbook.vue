@@ -1,6 +1,6 @@
 <script setup>
 // TODO: convert to BaseOrderbook
-defineProps({
+const props = defineProps({
   book: {
     type: { asks: [], bids: [] },
     validator: (prop) => {
@@ -19,18 +19,53 @@ defineProps({
     default: {},
   },
 });
+
+const asksComputed = computed(() =>
+  props.book.asks.slice(bookViewSetting.value === "sell" ? -20 : -10)
+);
+
+const bidsComputed = computed(() =>
+  props.book.bids.slice(0, bookViewSetting.value === "buy" ? 20 : 10)
+);
+
+const bookViewSetting = ref("default");
+
+const updateBookView = (view) => {
+  bookViewSetting.value = view;
+};
 </script>
 
 <template>
   <div>
-    <div class="flex gap-32 text-gray-500 py-2">
+    <div class="flex gap-x-1 items-center my-3 w-fit">
+      <img
+        @click="updateBookView('default')"
+        src="/assets/images/default.png"
+        alt="orderbook default view"
+        class="max-w-4 cursor-pointer"
+      />
+      <img
+        @click="updateBookView('sell')"
+        src="/assets/images/sell.png"
+        alt="orderbook sell view"
+        class="max-w-4 cursor-pointer"
+      />
+      <img
+        @click="updateBookView('buy')"
+        src="/assets/images/buy.png"
+        alt="orderbook buy view"
+        class="max-w-4 cursor-pointer"
+      />
+    </div>
+
+    <div class="flex gap-32 text-gray-500 my-2 text-sm">
       <span class="grow">Price</span>
       <span>Size</span>
     </div>
 
-    <div class="tabular-nums lining-nums">
+    <div v-if="bookViewSetting !== 'buy'" class="tabular-nums lining-nums">
       <div
-        v-for="ask in book.asks"
+        v-for="ask in asksComputed"
         class="flex cursor-pointer hover:bg-neutral-800"
       >
         <span class="grow text-sell">{{ ask[0] }}</span>
@@ -50,9 +85,9 @@ defineProps({
       </span>
     </div>
 
-    <div class="tabular-nums lining-nums">
+    <div v-if="bookViewSetting !== 'sell'" class="tabular-nums lining-nums">
       <div
-        v-for="bid in book.bids"
+        v-for="bid in bidsComputed"
         class="flex cursor-pointer hover:bg-neutral-800"
       >
         <span class="grow text-buy">{{ bid[0] }}</span>

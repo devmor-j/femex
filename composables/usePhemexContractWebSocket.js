@@ -30,8 +30,8 @@ export default function ({ symbol = "BTCUSD" } = {}) {
   const tradesRef = ref([]);
 
   const orderbookComputed = computed(() => ({
-    asks: orderbookRef.value.asks.map(toFormattedOrderbook).reverse().slice(20),
-    bids: orderbookRef.value.bids.map(toFormattedOrderbook).slice(0, 10),
+    asks: orderbookRef.value.asks.map(toFormattedOrderbook).reverse(),
+    bids: orderbookRef.value.bids.map(toFormattedOrderbook),
   }));
   const tradesComputed = computed(() =>
     tradesRef.value.map(toFormattedTrades).slice(0, 50)

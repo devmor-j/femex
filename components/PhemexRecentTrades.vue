@@ -16,10 +16,10 @@ defineProps({
 
 <template>
   <div>
-    <div class="flex gap-32 text-gray-500 py-2">
+    <div class="flex gap-32 text-gray-500 py-2 text-sm">
       <span class="grow">Price</span>
       <span class="grow">Size</span>
-      <span class="pe-6">Time</span>
+      <span class="pe-5">Time</span>
     </div>
 
     <div class="tabular-nums lining-nums overflow-y-auto h-[32rem]">
