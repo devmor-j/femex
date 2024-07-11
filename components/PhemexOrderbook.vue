@@ -28,6 +28,18 @@ const bidsComputed = computed(() =>
   props.book.bids.slice(0, bookViewSetting.value === "buy" ? 20 : 10)
 );
 
+const bidAskRatioComputed = computed(() => {
+  const bidsQuantitySum = sum(props.book.bids.map((b) => +b[1]));
+  const asksQuantitySum = sum(props.book.asks.map((a) => +a[1]));
+
+  return (
+    +(
+      (100 * bidsQuantitySum) /
+      (bidsQuantitySum + asksQuantitySum)
+    ).toFixed() || 0
+  );
+});
+
 const bookViewSetting = ref("default");
 
 const updateBookView = (view) => {
@@ -115,5 +127,32 @@ const updateBookView = (view) => {
         </div>
       </div>
     </TransitionGroup>
+
+    <div class="flex items-center h-6 my-3" v-if="bidAskRatioComputed">
+      <div class="text-buy text-xs flex items-center bg-buy/15 h-full">
+        <span
+          class="border border-buy bg-transparent me-2 inline-block text-center align-middle leading-5 min-h-5 min-w-5"
+          >B</span
+        >
+        <span>{{ bidAskRatioComputed }}%</span>
+      </div>
+
+      <div
+        class="grow h-full transition-[width] ease-linear duration-500 bg-buy/15"
+        :style="{ width: bidAskRatioComputed + '%' }"
+      ></div>
+      <div
+        class="grow h-full transition-[width] ease-linear duration-500 bg-sell/15"
+        :style="{ width: 100 - bidAskRatioComputed + '%' }"
+      ></div>
+
+      <div class="text-sell text-xs flex items-center bg-sell/15 h-full">
+        <span>{{ (100 - bidAskRatioComputed).toFixed() }}%</span>
+        <span
+          class="border border-sell bg-transparent ms-2 inline-block text-center align-middle leading-5 min-h-5 min-w-5"
+          >S</span
+        >
+      </div>
+    </div>
   </div>
 </template>
