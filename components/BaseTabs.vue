@@ -4,14 +4,14 @@ const TITLE_PROP = "base-tabs-title";
 const slots = useSlots();
 
 const tabTitles = computed(() =>
-  slots.default().map((s) => s.props[TITLE_PROP])
+  slots.default().map((s) => s.props?.[TITLE_PROP])
 );
 
 const activeTab = computed(() =>
-  slots.default().find((s) => s.props[TITLE_PROP] === activeTabTitle.value)
+  slots.default().find((s) => s.props?.[TITLE_PROP] === activeTabTitle.value)
 );
 
-const activeTabTitle = ref(tabTitles.value[0]);
+const activeTabTitle = ref(tabTitles.value.find((t) => t));
 
 const activateTab = (tabTitle) => {
   activeTabTitle.value = tabTitle;
