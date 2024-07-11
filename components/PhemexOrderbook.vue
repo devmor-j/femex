@@ -31,12 +31,14 @@ const bidsComputed = computed(() =>
 const bookViewSetting = ref("default");
 
 const updateBookView = (view) => {
-  bookViewSetting.value = view;
+  if (view !== bookViewSetting.value) {
+    bookViewSetting.value = view;
+  }
 };
 </script>
 
 <template>
-  <div>
+  <div class="relative">
     <div class="flex gap-x-1 items-center my-3 w-fit">
       <img
         @click="updateBookView('default')"
@@ -63,36 +65,52 @@ const updateBookView = (view) => {
       <span>Size</span>
     </div>
 
-    <div v-if="bookViewSetting !== 'buy'" class="tabular-nums lining-nums">
+    <TransitionGroup
+      move-class="transition-opacity transition-transform"
+      enter-active-class="transition-opacity transition-transform"
+      leave-active-class="transition-opacity transition-transform absolute"
+      enter-from-class="opacity-0 transform"
+      leave-to-class="opacity-0 transform"
+    >
       <div
-        v-for="ask in asksComputed"
-        class="flex cursor-pointer hover:bg-neutral-800"
+        v-if="bookViewSetting !== 'buy'"
+        class="tabular-nums lining-nums"
+        key="phemex-orderbook-buys"
       >
-        <span class="grow text-sell">{{ ask[0] }}</span>
-        <span>{{ ask[1] }}</span>
+        <div
+          v-for="ask in asksComputed"
+          class="flex cursor-pointer hover:bg-neutral-800"
+        >
+          <span class="grow text-sell">{{ ask[0] }}</span>
+          <span>{{ ask[1] }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="py-2">
-      <span
-        class="font-black text-2xl min-h-8 flex items-center gap-x-1 cursor-pointer"
-        :class="lastTrade.isBuy ? 'text-buy' : 'text-sell'"
-      >
-        {{ lastTrade.price }}
-        <i class="text-base" v-if="typeof lastTrade.isBuy === 'boolean'">{{
-          lastTrade.isBuy ? "&#9650;" : "&#9660;"
-        }}</i>
-      </span>
-    </div>
+      <div class="py-2" key="phemex-orderbook-last-price">
+        <span
+          class="font-black text-2xl min-h-8 flex items-center gap-x-1 cursor-pointer"
+          :class="lastTrade.isBuy ? 'text-buy' : 'text-sell'"
+        >
+          {{ lastTrade.price }}
+          <i class="text-base" v-if="typeof lastTrade.isBuy === 'boolean'">{{
+            lastTrade.isBuy ? "&#9650;" : "&#9660;"
+          }}</i>
+        </span>
+      </div>
 
-    <div v-if="bookViewSetting !== 'sell'" class="tabular-nums lining-nums">
       <div
-        v-for="bid in bidsComputed"
-        class="flex cursor-pointer hover:bg-neutral-800"
+        v-if="bookViewSetting !== 'sell'"
+        class="tabular-nums lining-nums"
+        key="phemex-orderbook-sells"
       >
-        <span class="grow text-buy">{{ bid[0] }}</span>
-        <span>{{ bid[1] }}</span>
+        <div
+          v-for="bid in bidsComputed"
+          class="flex cursor-pointer hover:bg-neutral-800"
+        >
+          <span class="grow text-buy">{{ bid[0] }}</span>
+          <span>{{ bid[1] }}</span>
+        </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
