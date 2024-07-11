@@ -1,75 +1,19 @@
-# Nuxt 3 Minimal Starter
+# Femex
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project is a hobby website that aims to reproduce a better version of [Phemex Exchange](https://phemex.com/trade/inverse/BTCUSD) trading terminal. Currently the orderbook and recent trades section is almost 80% completed.
 
-## Setup
+## Roadmap
 
-Make sure to install the dependencies:
+There are many ideas where this project can go from here but these are some of my thoughts for the project's roadmap:
 
-```bash
-# npm
-npm install
+- develop resizable panel feature for orderbook and recent trades seciton
+- show cumulative quantites on orderbook
+- create a trade creator panel
+- define theme and light mode
 
-# pnpm
-pnpm install
+## Maintainer Notes:
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- add prettier attr sorter
+- add tailwind class sorter
+- add eslint
+- add frist version number
