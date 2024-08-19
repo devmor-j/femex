@@ -22,8 +22,7 @@
         >.
         <br />
         <p class="my-2">
-          I'm currently available for hiring preferably part-time (8 to 13).
-          Thanks for visiting this website and have fun.
+          I'm currently available for hiring. Thanks for visiting this website and have fun.
         </p>
       </h2>
 
