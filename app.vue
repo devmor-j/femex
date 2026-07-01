@@ -7,8 +7,6 @@
 </template>
 
 <style lang="scss">
-@use "assets/scss/main.scss";
-
 .page-enter-active,
 .page-leave-active {
   transition-duration: 200ms;

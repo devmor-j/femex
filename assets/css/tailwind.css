@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-buy: #00bd84;
+  --color-sell: #f24e53;
+  --font-family-HarmonyOS_Sans:
+    "HarmonyOS Sans", "HarmonyOS Sans fallback", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-family-HarmonyOS_Sans);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-stone-800) var(--color-stone-900);
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-stone-900);
+    border-radius: 2px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-stone-800);
+    border-radius: 2px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-stone-700);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--color-stone-500);
+  }
+
+  *::-webkit-scrollbar-track:active {
+    background: var(--color-stone-800);
+  }
+}
+
+@layer components {
+  a.link {
+    @apply text-blue-500 visited:text-purple-500 active:text-blue-600 hover:border-b border-dashed;
+  }
+
+  em.emphasis {
+    @apply bg-slate-800 px-1.5 py-0.5 border border-slate-700 border-dashed rounded;
+  }
+
+  button.btn {
+    @apply border rounded px-3 py-1 hover:bg-stone-800 bg-stone-900 text-orange-500;
+  }
+
+  small.arrow {
+    @apply transition-[padding] duration-100 pe-2 group-hover:ps-2 group-hover:pe-0;
+
+    &.reverse {
+      @apply pe-0 ps-2 group-hover:pe-2 group-hover:ps-0;
+    }
+  }
+}

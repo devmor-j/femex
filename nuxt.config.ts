@@ -1,8 +1,13 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
   compatibilityDate: "2024-07-03",
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/fontaine", "nuxt-svgo"],
+  modules: ["@nuxtjs/fontaine", "nuxt-svgo"],
+  css: ["~/assets/css/tailwind.css", "~/assets/css/main.css"],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
